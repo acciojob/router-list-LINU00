@@ -1,13 +1,23 @@
+import React, { useState } from "react";
+import ItemList from "./ItemList";
+import ItemDetail from "./ItemDetail";
 
-import React from "react";
-import './../styles/App.css';
+function App() {
+  const [selectedId, setSelectedId] = useState(null);
 
-const App = () => {
+  const handleSelect = (id) => {
+    setSelectedId(id);
+  };
+
   return (
     <div>
-        {/* Do not remove the main div */}
+      {selectedId === null ? (
+        <ItemList onSelect={handleSelect} />
+      ) : (
+        <ItemDetail id={selectedId} onBack={() => setSelectedId(null)} />
+      )}
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
